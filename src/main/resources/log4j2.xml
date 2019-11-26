@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="1800">
+	<properties>
+		<!-- 配置日志文件输出目录 -->
+		<Property name="LOG_HOME" value="log/error_log" />
+		<Property name="LOG_NAME">error</Property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %-5p (%F:%L) - %m%n" />
+		</Console>
+		<RollingRandomAccessFile name="ErrorLog"
+			fileName="${LOG_HOME}/${LOG_NAME}.log"
+			filePattern="${LOG_HOME}/${LOG_NAME}.log.%d{yyyy-MM-dd}.log">
+		<PatternLayout
+		pattern="%d %-5p (%F:%L) - %m%n"/>
+		<Policies>
+			<TimeBasedTriggeringPolicy/>
+			<SizeBasedTriggeringPolicy size="100 MB"/>
+		</Policies>
+		<DefaultRolloverStrategy max="20"/>
+		</RollingRandomAccessFile>
+	</Appenders>
+	<Loggers>
+		<!-- 3rdparty Loggers -->
+		<logger name="org.springframework.core" level="info">
+		</logger>
+		<logger name="org.springframework.beans" level="info">
+		</logger>
+		<logger name="org.springframework.context" level="info">
+		</logger>
+		<logger name="org.springframework.web" level="info">
+		</logger>
+		<logger name="cn.sinobest" level="Debug" includeLocation="true" additivity="false">
+		<appender-ref ref="ErrorLog"/>
+			<appender-ref ref="Console"/>
+		</logger>
+		<root level="info" includeLocation="true">
+			<appender-ref ref="Console"/>
+		</root>
+	</Loggers>
+</Configuration>
