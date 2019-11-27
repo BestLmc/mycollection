@@ -89,6 +89,21 @@ public class LuceneUtils {
          }
          return indexWriter;
     }
+
+	/**
+	 *
+	 * @return 返回用于操作索引的对象
+	 * @throws IOException
+	 */
+	public static IndexWriter getIndexWriter(Analyzer analyzer) throws IOException{
+		if(null==indexWriter){
+			// 初始化索引的写配置对象
+			indexWriterConfig = new IndexWriterConfig(analyzer);
+			// 初始化索引的写对象
+			indexWriter=new IndexWriter(directory, indexWriterConfig);
+		}
+		return indexWriter;
+	}
     
     /**
      * 

@@ -1,24 +1,9 @@
 package main.java.cn.lmc.collection.retrieval.web.analyzer;
 
 
-
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.RAMDirectory;
 import org.lionsoul.jcseg.analyzer.JcsegAnalyzer;
 import org.lionsoul.jcseg.tokenizer.core.JcsegTaskConfig;
 
@@ -31,9 +16,6 @@ import org.lionsoul.jcseg.tokenizer.core.JcsegTaskConfig;
  * @Date 2019/11/26
  */
 public class JcsegAnalyzerTest {
-
-    // 检索内容
-    static String text = "jcseg是使用 Java 开发的一款开源的中文分词器, 基于流行的mmseg算法实现，分词准确率高达98.4%, 支持中文人名识别, 同义词匹配, 停止词过滤等。并且提供了最新版本的lucene,solr,elasticsearch分词接口。";
 
     public static void main(String[] args) throws Exception {
         Analyzer analyzer = new JcsegAnalyzer(JcsegTaskConfig.NLP_MODE);
@@ -52,7 +34,7 @@ public class JcsegAnalyzerTest {
         config.setAppendCJKPinyin(true);
         // 更多配置, 请查看 com.webssky.jcseg.core.JcsegTaskConfig 类
         config.setICnName(true);
-
+        // 分词内容
         String keyword = "孙悟空，杨超越";
 
         // 使用QueryParser查询分析器构造Query对象

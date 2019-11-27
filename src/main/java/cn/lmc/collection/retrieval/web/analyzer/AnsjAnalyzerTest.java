@@ -1,9 +1,8 @@
 package main.java.cn.lmc.collection.retrieval.web.analyzer;
 
-import org.ansj.splitWord.analysis.BaseAnalysis;
-import org.ansj.splitWord.analysis.IndexAnalysis;
-import org.ansj.splitWord.analysis.NlpAnalysis;
-import org.ansj.splitWord.analysis.ToAnalysis;
+import org.ansj.library.DicLibrary;
+import org.ansj.splitWord.analysis.*;
+import org.ansj.util.MyStaticValue;
 
 
 /**
@@ -53,14 +52,58 @@ public class AnsjAnalyzerTest {
         System.out.println(IndexAnalysis.parse(words));
     }
 
+    /**
+     * 自定词典分词(DicLibrary)
+     * 动态添加
+     */
+    public static void DicLibraryTest(){
+        //添加自定义词语 【 英文，按照小写配置。（大写，不识别。拆词的结果，也转为小写了）】
+        DicLibrary.insert(DicLibrary.DEFAULT, "基于java", "n", 1);
+
+        String text = "基于Java开发的轻量级的中分分词工具包";
+
+        System.out.println(DicAnalysis.parse(text));
+    }
+
+    /**
+     * 自定词典分词(DicLibrary)
+     * 路径获取
+     */
+    public static void DicLibraryPath(){
+        // 关闭名字识别
+        MyStaticValue.isNameRecognition = false;
+        // 配置自定义词典的位置。注意是绝对路径
+        MyStaticValue.ENV.put(DicLibrary.DEFAULT, "E:\\indexDir\\library\\default.dic");
+
+        String text = "基于Java开发的轻量级的中分分词工具包";
+
+        System.out.println(DicAnalysis.parse(text));
+    }
+
+    /**
+     * 自定词典分词(DicLibrary)
+     * 配置文件
+     */
+    public static void DicLibraryProperties(){
+        String text = "基于Java开发的轻量级的中分分词工具包";
+
+        System.out.println(DicAnalysis.parse(text));
+    }
+
     public static void main(String[] args) {
         // 基本分词
-        BaseAnalysisTest();
-        // 精准分词
-        ToAnalysisTest();
-        // NLP分词
-        NlpAnalysisTest();
-        // 面向索引分词
-        IndexAnalysisTest();
+//        BaseAnalysisTest();
+//        // 精准分词
+//        ToAnalysisTest();
+//        // NLP分词
+//        NlpAnalysisTest();
+//        // 面向索引分词
+//        IndexAnalysisTest();
+        // 词典分词(动态添加)
+//        DicLibraryTest();
+        // 词典分词(路径)
+//        DicLibraryPath();
+        // 词典分词(配置文件)
+        DicLibraryProperties();
     }
 }
