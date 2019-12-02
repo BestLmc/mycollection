@@ -50,8 +50,9 @@ public class AnsjAnalyzerTest {
      * 面向索引分词(IndexAnalysis)
      */
     public static void IndexAnalysisTest(){
-        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine";
+        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine，周杰伦,杰伦";
         System.out.println(IndexAnalysis.parse(words));
+        System.out.println(IndexAnalysis.parse("杰伦"));
     }
 
     /**

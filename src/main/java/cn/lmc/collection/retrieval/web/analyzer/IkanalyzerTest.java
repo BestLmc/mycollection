@@ -66,7 +66,7 @@ public class IkanalyzerTest {
      * 使用分词器对字符串分词
      */
     private static void IKanalyzer8() throws ParseException, IOException {
-        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine";
+        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine,周杰伦";
         // 细粒度切分
         try (Analyzer ik = new IKAnalyzer8();) {
             TokenStream ts = ik.tokenStream("content", words);

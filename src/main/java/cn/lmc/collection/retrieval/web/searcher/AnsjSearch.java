@@ -74,7 +74,7 @@ public class AnsjSearch {
             doc = new Document();
             doc.add(new StringField("companyid", "004", Field.Store.YES));
             // 介绍
-            doc.add(new TextField("introduction", "第二类医疗器械经营备案凭证租赁合同 岚侠 441524199907224111 铝材 佛山市南海顺迈五金制品有限公司", Field.Store.YES));
+            doc.add(new TextField("introduction", "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine, 周杰伦 ", Field.Store.YES));
             // 添加文档
             writer.addDocument(doc);
 
@@ -115,7 +115,7 @@ public class AnsjSearch {
             Analyzer analyzer = new AnsjAnalyzer(AnsjAnalyzer.TYPE.nlp_ansj);
 
             QueryParser queryParser = new QueryParser("introduction", analyzer);
-            Query query = queryParser.parse("五月天");
+            Query query = queryParser.parse("杰伦");
             System.out.println("query分词结果:"+query);
 
             SortField sortField = new SortField("introduction",SortField.Type.SCORE,false);
