@@ -35,7 +35,7 @@ public class JcsegAnalyzerTest {
         // 更多配置, 请查看 com.webssky.jcseg.core.JcsegTaskConfig 类
         config.setICnName(true);
         // 分词内容
-        String keyword = "孙悟空，杨超越";
+        String keyword = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine";
 
         // 使用QueryParser查询分析器构造Query对象
         QueryParser qp = new QueryParser("text", analyzer);

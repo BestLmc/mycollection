@@ -128,7 +128,7 @@ public class AnsjAnalyzer extends Analyzer {
 			analysis.resetContent(reader);
 		}
 
-		//用户自定义词典
+		//用户自定义词典-拓展词
 		if (StringUtil.isNotBlank(temp = args.get(DicLibrary.DEFAULT))) {
 			String[] split = temp.split(",");
 			Forest[] forests = new Forest[split.length];
@@ -142,7 +142,7 @@ public class AnsjAnalyzer extends Analyzer {
 		}
 
 		List<StopRecognition> filters = null;
-		//用户自定义词典
+		//用户自定义词典-停止词
 		if (StringUtil.isNotBlank(temp = args.get(StopLibrary.DEFAULT))) {
 			String[] split = temp.split(",");
 			filters = new ArrayList<StopRecognition>();

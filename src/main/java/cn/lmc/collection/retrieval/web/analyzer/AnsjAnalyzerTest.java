@@ -1,5 +1,6 @@
 package main.java.cn.lmc.collection.retrieval.web.analyzer;
 
+import org.ansj.domain.Result;
 import org.ansj.library.DicLibrary;
 import org.ansj.splitWord.analysis.*;
 import org.ansj.util.MyStaticValue;
@@ -20,7 +21,7 @@ public class AnsjAnalyzerTest {
      * 速度快
      */
     public static void BaseAnalysisTest(){
-        String words = "让战士们过一个欢乐祥和的新春佳节。";
+        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine";
         System.out.println(BaseAnalysis.parse(words));
     }
 
@@ -29,7 +30,7 @@ public class AnsjAnalyzerTest {
      * 精准分词方式兼顾精度与速度，比较均衡
      */
     public static void ToAnalysisTest(){
-        String words = "让战士们过一个欢乐祥和的新春佳节。";
+        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine。";
         System.out.println(ToAnalysis.parse(words));
     }
 
@@ -38,17 +39,18 @@ public class AnsjAnalyzerTest {
      * NLP分词方式可是未登录词，但速度较慢
      */
     public static void NlpAnalysisTest(){
-        String words = "洁面仪配合洁面深层清洁毛孔 清洁鼻孔面膜碎觉使劲挤才能出一点点皱纹 " +
-                "脸颊毛孔修复的看不见啦 草莓鼻历史遗留问题没辙 脸和脖子差不多颜色的皮肤才是健康的 " +
-                "长期使用安全健康的比同龄人显小五到十岁 28岁的妹子看看你们的鱼尾纹。";
+        String words = "佛山市南海尚铝五金制品有限公司 91440101304471127J";
         System.out.println(NlpAnalysis.parse(words));
+        Result result = NlpAnalysis.parse(words);
+        System.out.println(result.toString());
+        System.out.println(result.getTerms().toString());
     }
 
     /**
      * 面向索引分词(IndexAnalysis)
      */
     public static void IndexAnalysisTest(){
-        String words = "洁面仪配合洁面深层清洁毛孔 清洁鼻孔面膜碎觉使劲挤才能出一点点皱纹";
+        String words = "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine";
         System.out.println(IndexAnalysis.parse(words));
     }
 
@@ -98,12 +100,12 @@ public class AnsjAnalyzerTest {
 //        // NLP分词
 //        NlpAnalysisTest();
 //        // 面向索引分词
-//        IndexAnalysisTest();
+        IndexAnalysisTest();
         // 词典分词(动态添加)
 //        DicLibraryTest();
         // 词典分词(路径)
 //        DicLibraryPath();
         // 词典分词(配置文件)
-        DicLibraryProperties();
+//        DicLibraryProperties();
     }
 }
