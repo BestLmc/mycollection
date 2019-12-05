@@ -9,6 +9,7 @@ import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
@@ -112,16 +113,26 @@ public class AnsjSearch {
             // 创建一个indexsearcher对象
             searcher = new IndexSearcher(reader);
             // 获取Ansj的分词器
-            Analyzer analyzer = new AnsjAnalyzer(AnsjAnalyzer.TYPE.nlp_ansj);
+            BooleanQuery.Builder builder = new BooleanQuery.Builder();
 
+            Analyzer analyzer = new AnsjAnalyzer(AnsjAnalyzer.TYPE.index_ansj);
             QueryParser queryParser = new QueryParser("introduction", analyzer);
-            Query query = queryParser.parse("杰伦");
+            Query query = queryParser.parse("周杰伦");
+            Query qwjs = queryParser.parse(QueryParser.escape("周杰伦"));
             System.out.println("query分词结果:"+query);
+            System.out.println("qwjs分词结果:"+qwjs);
+
+            builder.add(qwjs, BooleanClause.Occur.MUST);
+
+            Query gmsfhm = new TermQuery(new Term("companyid", "004"));
+            builder.add(gmsfhm, BooleanClause.Occur.MUST);
+
+            BooleanQuery booleanQuery = builder.build();
 
             SortField sortField = new SortField("introduction",SortField.Type.SCORE,false);
             Sort sort = new Sort(sortField);
 
-            TopDocs topDocs = searcher.search(query, 10, sort);
+            TopDocs topDocs = searcher.search(booleanQuery, 10, sort);
             System.out.println("数字查询");
             System.out.println("命中结果数为: "+ topDocs.totalHits);
             // 返回查询结果。遍历查询结果并输出。
