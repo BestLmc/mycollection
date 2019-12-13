@@ -69,7 +69,7 @@ public class Base64Util {
 	 * 将文件转成base64字符串
 	 */
 	public static void jdkBase64() {
-		File file = new File("E:\\华资\\开发任务\\OCR\\2019-09-19\\09118230eebd4bb9bca3fc9c72904414.jpg"); 
+		File file = new File("E:\\图片\\ocr\\sfzzm.jpg");
 		
 		try(InputStream fis = new FileInputStream(file);
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();) {
@@ -90,8 +90,8 @@ public class Base64Util {
 	}
 	
 	public static void main(String[] args) {
-//		jdkBase64();	// 该方法比较简便快捷
-		apacheBase64();	// 效果还可以
+		jdkBase64();	// 该方法比较简便快捷
+//		apacheBase64();	// 效果还可以
 //		java8Base64();	// 该方法网上说好用，但是转化文件产生的字符串会有卡顿，卡死的风险
 				
 	}

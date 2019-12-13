@@ -133,7 +133,7 @@ public class PdfUtils {
 	
 	public static void main(String[] args) throws FileNotFoundException, WriterException, IOException {
 		String text = "内部使用，仅供查看";
-		File sourceFile = new File("E:\\图片\\测试文档\\CCGP2018045C.pdf");
+		File sourceFile = new File("E:\\图片\\测试文档\\pdftest001.pdf");
 		File pdfFile = new File("E:\\图片\\测试文档\\test009.pdf");
 		PdfUtils.getInstance().addTestMarkForPDF(new FileInputStream(sourceFile), new FileOutputStream(pdfFile), text);
 	}

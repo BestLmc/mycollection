@@ -3,10 +3,8 @@ package main.java.cn.lmc.collection.retrieval.web.searcher;
 import main.java.cn.lmc.collection.common.lucene.LuceneUtils;
 import main.java.cn.lmc.collection.common.lucene.ansj.AnsjAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
+import org.apache.lucene.document.*;
+import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
@@ -51,9 +49,20 @@ public class AnsjSearch {
             doc = new Document();
             doc.add(new StringField("companyid", "001", Field.Store.YES));
             // 介绍
+            FieldType type = new FieldType();
+            // 设置是否存储该字段
+            type.setStored(true); // 请试试不存储的结果
+            // 设置是否对该字段分词
+            type.setTokenized(true); // 请试试不分词的结果
+            // 设置该字段的索引选项
+            type.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS); // 请尝试不同的选项的效果
+            type.freeze(); // 使不可更改
             doc.add(new TextField("introduction", "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine ", Field.Store.YES));
             // 添加文档
             writer.addDocument(doc);
+
+            TextField testfield = new TextField("introduction", "五月天创建的人生有限公司举报了一场演唱会，陈信宏唱了一首do you ever shine ", Field.Store.YES);
+//            testfield.set
 
             // 公司id
             doc = new Document();
@@ -113,26 +122,17 @@ public class AnsjSearch {
             // 创建一个indexsearcher对象
             searcher = new IndexSearcher(reader);
             // 获取Ansj的分词器
-            BooleanQuery.Builder builder = new BooleanQuery.Builder();
 
-            Analyzer analyzer = new AnsjAnalyzer(AnsjAnalyzer.TYPE.index_ansj);
+            Analyzer analyzer = new AnsjAnalyzer(AnsjAnalyzer.TYPE.nlp_ansj);
             QueryParser queryParser = new QueryParser("introduction", analyzer);
-            Query query = queryParser.parse("周杰伦");
-            Query qwjs = queryParser.parse(QueryParser.escape("周杰伦"));
-            System.out.println("query分词结果:"+query);
+            Query qwjs = queryParser.parse(QueryParser.escape("五月天"));
             System.out.println("qwjs分词结果:"+qwjs);
 
-            builder.add(qwjs, BooleanClause.Occur.MUST);
-
-            Query gmsfhm = new TermQuery(new Term("companyid", "004"));
-            builder.add(gmsfhm, BooleanClause.Occur.MUST);
-
-            BooleanQuery booleanQuery = builder.build();
 
             SortField sortField = new SortField("introduction",SortField.Type.SCORE,false);
             Sort sort = new Sort(sortField);
 
-            TopDocs topDocs = searcher.search(booleanQuery, 10, sort);
+            TopDocs topDocs = searcher.search(qwjs, 10, sort);
             System.out.println("数字查询");
             System.out.println("命中结果数为: "+ topDocs.totalHits);
             // 返回查询结果。遍历查询结果并输出。

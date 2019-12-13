@@ -9,7 +9,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-
+/**
+ * PropertyUtil
+ * 获取配置文件信息工具类
+ *
+ * @author limingcheng
+ * @Date 2019/12/9
+ */
 public class PropertyUtil {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
