@@ -1,53 +1,53 @@
 # 代码收藏仓库
 该仓库主要是用来收藏平时练习、测试的代码
 
-#公用工具类
-##lucene
+# 公用工具类
+## lucene
 lecene相关练习代码和工具类
-##utils
+## utils
 通用工具类
 
-#algorithm
+# algorithm
 算法练习代码
-##堆栈
+## 堆栈
 用数组和链表实现栈
 
-#file
+# file
 文件处理的相关代码
-##pdf
+## pdf
 对pdf文件处理的代码或者工具类
 
-#javabasic
+# javabasic
 java基础应用的代码练习
 ##reflection
 反射，java反射的相关练习代码
 
-#retrieval
+# retrieval
 全文检索的练习代码
-##web
+## web
 web端应用
-###analyzer
+### analyzer
 分词器
-###searcher
+### searcher
 查询
 
 
-#test
+# test
 测试代码
-##enumtest
+## enumtest
 枚举数据测试练习
-##filetest
+## filetest
 文件操作测试练习代码
-##stringtest
+## stringtest
 字符串测试练习代码
 
-#utils
+# utils
 工具类
-##file 
+## file 
 文件操作工具类
-##Base64Util
+## Base64Util
 base64转化工具类
-##QrcodeUtil
+## QrcodeUtil
 二维码工具类
 
 
