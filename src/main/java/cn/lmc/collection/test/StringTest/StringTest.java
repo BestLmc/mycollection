@@ -5,6 +5,11 @@ import sun.misc.BASE64Decoder;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * StringTest
@@ -41,14 +46,19 @@ public class StringTest {
         String url = "/files/cl/2019/0809/ca36ae06-b6d7-4e5a-a3ea-135774d5e8be_ac805b07eaea47fcb1d9b17ac05772d.jpg";
         url = url.replace("/","\\");
         String wjm = url.substring(url.lastIndexOf("\\")+1);
+        String ext = url.substring(url.lastIndexOf(".")+1);
 
 //        url = url.substring(1, url.lastIndexOf("/"));
+        // 文件名
+        String wjm1 = UUID.randomUUID().toString().replace("-","")+"."+ext;
 
         String filepath = "ftp" + "\\" + "frcl" + "\\" + url;
         String wjlj = filepath + "\\" + wjm;
         System.out.println("文件名："+wjm);
         System.out.println("原始文件名："+url);
         System.out.println("文件路径： "+filepath);
+        System.out.println("文件后缀： "+ext);
+        System.out.println("文件后缀： "+wjm1);
 
     }
 
@@ -73,12 +83,38 @@ public class StringTest {
 
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * 转时间格式字符串
+     */
+    private static void timestostr() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat tsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat fsdf = new SimpleDateFormat("yyyy-MM-dd");
+        String time = "2019/8/1 8:31:19";
+        String time2 = "2019-08-11T21:27:51";
+        time2 = time2.replace("T", " ");
+        String outstr = time.substring(0,8);
+        Date atime = sdf.parse(time);
+        Date ttime = tsdf.parse(time2);
+        System.out.println("outstr:" +outstr);
+        System.out.println("atime:" +atime);
+        System.out.println("转化结果:" +fsdf.format(atime));
+        System.out.println("转化结果2:" +fsdf.format(ttime));
+
+    }
+
+
+
+    public static void main(String[] args) throws IOException, ParseException {
+        // 转时间格式字符串
+//        timestostr();
+
+
         // 自然人文件名路径截取
 //        subStr();
         // 枚举
 //        enumTest();
-//        frSubstr();
-        frTest();
+        frSubstr();
+//        frTest();
     }
 }

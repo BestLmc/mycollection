@@ -1,9 +1,6 @@
 package main.java.cn.lmc.collection.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Base64;
 
 
@@ -70,7 +67,7 @@ public class Base64Util {
 	 */
 	public static void jdkBase64() {
 		File file = new File("E:\\图片\\ocr\\sfzzm.jpg");
-		
+
 		try(InputStream fis = new FileInputStream(file);
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();) {
 			//读取缓存  
@@ -88,8 +85,35 @@ public class Base64Util {
 			e.printStackTrace();
 		}  
 	}
-	
+
+	/**
+	 *
+	 */
+	public static void jdkBase64Decode(){
+		File outFile = new File("E:\\图片\\scan.jpg");
+		String scanFile = "";
+		try(FileOutputStream fos = new FileOutputStream(outFile);
+				) {
+
+			// 将字符串转成byte数组
+//			byte[] byt = scanFile.getBytes();
+			// 根据输出流创建字符串对象（加密）
+			byte[] byt = new sun.misc.BASE64Decoder().decodeBuffer(scanFile);
+			fos.write(byt);
+			fos.flush();
+			fos.close();
+			// 打印
+			System.out.println("文件输出完毕!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+	}
+
+
 	public static void main(String[] args) {
+		jdkBase64Decode();
 		jdkBase64();	// 该方法比较简便快捷
 //		apacheBase64();	// 效果还可以
 //		java8Base64();	// 该方法网上说好用，但是转化文件产生的字符串会有卡顿，卡死的风险
