@@ -103,9 +103,29 @@ public class StringTest {
 
     }
 
+    /**
+     * @Author: limingcheng on 2020/2/14 15:25
+     * @param:  * @param
+     * @return: void
+     * @Description:
+     */
+    private static void checkNation(){
+
+        String nation = "汉族";
+        if("族".equals(nation.substring(nation.length()-1))){
+            nation = nation.substring(0, nation.length()-1);
+        }
+        System.out.println("结果："+nation);
+
+
+    }
+
 
 
     public static void main(String[] args) throws IOException, ParseException {
+        // 校验民族
+        checkNation();
+
         // 转时间格式字符串
 //        timestostr();
 
@@ -114,7 +134,7 @@ public class StringTest {
 //        subStr();
         // 枚举
 //        enumTest();
-        frSubstr();
+//        frSubstr();
 //        frTest();
     }
 }

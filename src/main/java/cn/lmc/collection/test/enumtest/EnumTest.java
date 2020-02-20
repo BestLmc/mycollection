@@ -101,7 +101,7 @@ public class EnumTest {
 	public static void main(String[] args) {
 //		test1();	// 枚举值使用和初始化
 //		enumCompare();	// 枚举比较
-//		enumDemo2();	// 枚举类2
-		enumSet();	// enum的set,map用法
+		enumDemo2();	// 枚举类2
+//		enumSet();	// enum的set,map用法
 	}
 }

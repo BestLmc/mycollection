@@ -50,5 +50,37 @@ public class PropertyUtil {
         	}
         }
         return null;
-    } 
+    }
+
+	// 读取配置文件中的值
+	public static Object getParamFromProperties(String key){
+		InputStream is = PropertyUtil.class.getClassLoader().getResourceAsStream("properties.properties");
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+			Properties props = new Properties();
+			props.load(br);
+			return props.get(key);
+		} catch (IOException e) {
+			logger.error("获取config.properties的配置信息失败");
+			e.printStackTrace();
+		} finally {
+			// 关闭流资源
+			if(is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if(br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
 }
