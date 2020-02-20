@@ -22,8 +22,19 @@ public class BaseNumberTest {
         System.out.println("totalPageNum:"+totalPageNum);
     }
 
+    private static void nums(){
+        float num = 0.01f;
+        int i = 0;
+        while(i<29) {
+            i += 1;
+            num = num + num * 2;
+        }
+        System.out.println("总数为："+String.valueOf(num));
+    }
+
     public static void main(String[] args) {
 
-        divisionTest();
+//        divisionTest();
+        nums();
     }
 }
