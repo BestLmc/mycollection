@@ -2,6 +2,7 @@ package main.java.cn.lmc.collection.javabasic.datetime;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -17,8 +18,10 @@ public class LocalDateTimeTest {
 //        getNow();
         // 使用LocalDateTime转成字符串
 //        getNowStr();
+        // 使用LocalDateTime转成long
+        getNowLong();
         // 获取时间戳
-        getDuration();
+//        getDuration();
 
     }
 
@@ -39,6 +42,15 @@ public class LocalDateTimeTest {
         LocalDateTime now = LocalDateTime.now();
         String today = df.format(now);
         System.out.println(today);
+    }
+
+    /**
+     * 时间转换
+     */
+    private static void getNowLong(){
+        // 第八区时间
+        Long createAt = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
+        System.out.println("当前时间"+createAt);
     }
 
     /**
